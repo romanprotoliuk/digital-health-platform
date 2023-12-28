@@ -47,10 +47,15 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
       },
     }),
+    async redirect({ url, baseUrl }) {
+      return baseUrl + '/dashboard';
+    },
   },
   adapter: PrismaAdapter(db),
   pages: {
-    newUser: "/dashboard",
+    error: '/error',
+    verifyRequest: '/auth/verify-request',
+    newUser: '/dashboard'
   },
   providers: [
     DiscordProvider({
